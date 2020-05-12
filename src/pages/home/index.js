@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <Fragment>
       <h1 data-testid="page-title">Home</h1>
-      <Button className="btn btn-primary" text="Pirmary Button" />
+      <Button className="btn btn-primary" text="Primary Button" />
     </Fragment>
   );
 };
