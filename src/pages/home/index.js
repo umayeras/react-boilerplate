@@ -1,7 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
+import Button from "../../components/shared/Button";
 
 const Home = () => {
-  return <h1 data-testid="page-title">Home</h1>
-}
+  return (
+    <Fragment>
+      <h1 data-testid="page-title">Home</h1>
+      <Button className="btn btn-primary" text="Pirmary Button" />
+    </Fragment>
+  );
+};
 
 export default Home;
