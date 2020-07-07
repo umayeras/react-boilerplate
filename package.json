@@ -9,7 +9,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -17,14 +18,19 @@
     "@testing-library/react-hooks": "^3.2.1",
     "@testing-library/user-event": "^7.2.1",
     "axios-mock-adapter": "^1.18.1",
+    "jest-sonar-reporter": "^2.0.0",
     "react-test-renderer": "^16.13.1"
+  },
+  "config": {
+    "deployPath": "path-to-publish-folder"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
-    "coverage": "npm test -- --coverage",
-    "eject": "react-scripts eject"
+    "coverage": "CI=true react-scripts test --silent --env=jsdom --coverage --testResultsProcessor jest-sonar-reporter",
+    "eject": "react-scripts eject",
+    "build": "rimraf $npm_package_config_deployPath && react-scripts build",
+    "publish": "mv build $npm_package_config_deployPath"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,10 +38,18 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
-      "!<rootDir>/node_modules/",
+      "!node_modules/**",
       "!src/index.js",
-      "!src/config"
+      "!src/config",
+      "!src/setupTests.js",
+      "!public/**",
+      "!build/**"
     ]
+  },
+  "jestSonar": {
+    "reportPath": "reports",
+    "reportFile": "test-report.xml",
+    "indent": 4
   },
   "browserslist": {
     "production": [
