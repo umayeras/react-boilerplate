@@ -1,20 +1,15 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
-
-import Home from "../../pages/home";
 import About from "../../pages/about";
+import Home from "../../pages/home";
 
-const Routes = () => {
-  return (
-    <Switch>
-      <Route path="/about">
-        <About />
-      </Route>
-      <Route path="/">
-        <Home />
-      </Route>
-    </Switch>
-  );
-};
+const AppRoutes = [
+  {
+    index: true,
+    element: <Home />,
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+];
 
-export default Routes;
+export default AppRoutes;

@@ -1,11 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from "react-router-dom";
-import Routes from "./components/routes";
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AppRoutes from "./components/routes";
 
-ReactDOM.render(
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
+root.render(
   <BrowserRouter>
-    <Routes />
-  </BrowserRouter>,
-  document.getElementById('root')
+    <Routes>
+      {AppRoutes.map((route, index) => {
+        const { element, ...rest } = route;
+        return <Route key={index} {...rest} element={element} />;
+      })}
+    </Routes>
+  </BrowserRouter>
 );
